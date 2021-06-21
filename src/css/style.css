@@ -2,41 +2,44 @@
     font-family: 'Oswald', sans-serif;
     font-family: 'Poppins', sans-serif; 
 */
-.bg{
+
+.bg {
     background-color: #FF0036;
 }
 
-.bgWhite{
+.bgWhite {
     background-color: #e6e6e6;
 }
 
+
 /* header */
-header{
+
+header {
     padding: 0.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-header img{
+header img {
     width: 28%;
 }
 
-header nav ul{
+header nav ul {
     display: flex;
     list-style: none;
     font-family: 'Oswald', sans-serif;
     font-size: 1.3rem;
 }
 
-header nav ul li a{
+header nav ul li a {
     text-decoration: none;
     color: #F5F2F2;
     padding: 2rem 1rem;
 }
 
 header nav ul li:hover,
-header nav ul li a:hover{
+header nav ul li a:hover {
     text-decoration: none;
     color: #303030;
     padding: 2rem 1rem;
@@ -44,53 +47,54 @@ header nav ul li a:hover{
     transition: 1s;
 }
 
+
 /* NEWS */
 
-#news{
+#news {
     margin-top: 3rem;
 }
 
-#news .newsTitre{
+#news .newsTitre {
     color: #F5F2F2;
     font-size: 1.5rem;
     -webkit-text-stroke: 1px #FF0036;
 }
 
-.contenuNews{
+.contenuNews {
     display: flex;
     width: 80%;
     margin: auto;
 }
 
-.miniVignette{
+.miniVignette {
     display: flex;
     flex-direction: column;
     flex: 1;
 }
 
-.v1{
+.v1 {
     background: url(../../src/img/article/The-Last-of-Us-Part.jpg) center center/cover;
     height: 50vh;
     flex: 1;
 }
 
-.vignette{
+.vignette {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
 }
 
-.v2{
+.v2 {
     background: url(../../src/img/article/returnal.jpg) center center/cover;
     height: 25vh;
 }
 
-.v3{
+.v3 {
     background: url(../../src/img/article/animal-crossing.jpg) center center/cover;
     height: 25vh;
 }
 
-.newsCategorie{
+.newsCategorie {
     background-color: #F5F2F2;
     color: #303030;
     font-size: 1.3rem;
@@ -99,8 +103,10 @@ header nav ul li a:hover{
     text-align: center;
 }
 
+
 /* MORE NEWS */
-.moreNews{
+
+.moreNews {
     display: flex;
     flex-wrap: wrap;
     width: 80%;
@@ -108,50 +114,55 @@ header nav ul li a:hover{
 }
 
 .moreNews-row-item {
-    flex: 1 1 30%; /*grow | shrink | basis */
+    flex: 1 1 30%;
+    /*grow | shrink | basis */
     padding: 1rem;
 }
 
+
 /* FOOTER */
-footer{
+
+footer {
     text-align: center;
     padding: 2rem;
 }
 
-footer img{
+footer img {
     display: block;
     margin: 0 auto 1.3rem auto;
     width: 15%;
 }
 
-
 footer a,
-footer p{
+footer p {
     text-decoration: none;
     color: #F5F2F2;
 }
 
+
 /* ENREGISTRER USER */
-.login{
+
+.login {
     display: table;
     margin: 5rem auto;
     padding: 2rem;
     background: white;
     box-shadow: 0px 0px 10px 3px rgb(0 0 0 / 27%);
 }
-.login table td{
+
+.login table td {
     padding: 0.5rem;
     font-size: 1.3rem;
-
 }
 
-.login input{
+.login input {
     padding: 0.5rem;
     border-radius: 3px;
     font-size: 1.3rem;
 }
 
-.login input[type=file]::-webkit-file-upload-button {
+.login input[type=file]::-webkit-file-upload-button,
+input[type=file]::-webkit-file-upload-button {
     border: 1px solid yellow;
     background: #FF0036;
     font-size: 1.3rem;
@@ -159,44 +170,54 @@ footer p{
     margin-bottom: 0.5rem;
     width: 50%;
     border-radius: 3px;
-    box-shadow: 0px 10px 13px -7px black, 1px 2px 3px 3px rgba(0,0,0,0);
+    box-shadow: 0px 10px 13px -7px black, 1px 2px 3px 3px rgba(0, 0, 0, 0);
     cursor: pointer;
-
 }
 
-.login input[type=submit]{
+.login input[type=submit] {
     background: #FF0036;
-    box-shadow: 0px 10px 13px -7px #000000, 1px 2px 3px 3px rgba(0,0,0,0);
+    box-shadow: 0px 10px 13px -7px #000000, 1px 2px 3px 3px rgba(0, 0, 0, 0);
     border: 1px solid yellow;
     cursor: pointer;
 }
 
-.login input[type=submit]:hover{
+.login input[type=submit]:hover {
     animation: change 3s infinite;
-    color: white; 
+    color: white;
     -webkit-text-stroke: 1px black;
 }
 
-.registerOk{
+.registerOk {
     text-align: center;
     padding: 12rem;
 }
 
+
 /* Animation couleur bouton */
 
 @keyframes change {
-    0%{ background-color: #FF0036;}
-    33%{ background-color: black;}
-    66%{ background-color: yellow;}
-    100%{ background-color: #FF0036;}
+    0% {
+        background-color: #FF0036;
+    }
+    33% {
+        background-color: black;
+    }
+    66% {
+        background-color: yellow;
+    }
+    100% {
+        background-color: #FF0036;
+    }
 }
 
+
 /* ACCOUNT */
-#account{
+
+#account {
     padding: 5rem;
 }
 
-.account{
+.account {
     width: 70%;
     margin: auto;
     display: flex;
@@ -204,23 +225,26 @@ footer p{
     box-shadow: 0px 0px 10px 3px rgb(0 0 0 / 27%);
 }
 
-.infosMembre{
+.infosMembre {
     flex: 1;
     border-right: 1px solid black;
     padding-top: 3rem;
 }
 
-.infosMembre img{
+.infosMembre img {
     width: 100%;
-    box-shadow: 5px 5px 6px 2px rgba(0,0,0,0.8);}
+    box-shadow: 5px 5px 6px 2px rgba(0, 0, 0, 0.8);
+}
 
-.contenuMembre{
+.contenuMembre {
     text-align: center;
     flex: 3;
 }
 
+
 /* ADMIN */
-.gestionAdmin .template{
+
+.gestionAdmin .template {
     width: 80%;
     display: flex;
     margin: auto;
@@ -228,13 +252,15 @@ footer p{
     box-shadow: 0px 0px 10px 3px rgb(0 0 0 / 27%);
 }
 
+
 /* MENU ADMIN */
 
-.gestionAdmin .template .menu{
+.gestionAdmin .template .menu {
     display: flex;
     flex-direction: column;
 }
-.gestionAdmin .template .menu a{
+
+.gestionAdmin .template .menu a {
     text-decoration: none;
     padding: 1rem;
     border: 1px solid black;
@@ -242,31 +268,34 @@ footer p{
     color: white;
     text-align: center;
     margin-bottom: 1rem;
-    box-shadow: 5px 5px 6px 2px rgba(0,0,0,0.8);
+    box-shadow: 5px 5px 6px 2px rgba(0, 0, 0, 0.8);
 }
 
-.gestionAdmin .template .menu a:hover{
+.gestionAdmin .template .menu a:hover {
     animation: change 3s infinite;
-    color: white; 
+    color: white;
     -webkit-text-stroke: 1px black;
 }
 
+
 /* ADMIN GESTION CATEGORIE */
-.adminContenu{
+
+.adminContenu {
     width: 100%;
     text-align: center;
 }
-.gestionAdmin .adminContenu table{
+
+.gestionAdmin .adminContenu table {
     border: 1px solid black;
     width: 100%;
     margin: 1rem;
 }
 
-.gestionAdmin .adminContenu table tbody tr td{
+.gestionAdmin .adminContenu table tbody tr td {
     padding: 0.5rem;
 }
 
-.gestionCategorie{
+.gestionCategorie {
     width: 80%;
     margin: auto;
     /* display: flex;
@@ -274,30 +303,79 @@ footer p{
     justify-content: space-between;
 }
 
-.gestionCategorie div{
+.gestionCategorie div {
     width: 100%;
 }
 
+
 /* REDIGER ARTICLE */
-.redigerArticle{
+
+.redigerArticle {
     width: 75%;
     margin: auto;
 }
 
-.tox-statusbar__branding{ /*fait disparaitre le branding tinymce*/
+.btnTampon {
+    color: white;
+    font-size: 1.2rem;
+    background-color: yellow;
+    display: inline-block;
+    padding: 1rem;
+    border: 1px solid black;
+    margin-top: 1rem;
+    box-shadow: 0px 10px 13px -7px #000000, 1px 2px 3px 3px rgba(0, 0, 0, 0);
+    -webkit-text-stroke: 1px black;
+    text-transform: uppercase;
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
+}
+
+.btnTampon:hover {
+    animation: change 3s infinite;
+}
+
+.btnTampon a {
+    text-decoration: none;
+    color: white;
+    -webkit-text-stroke: 1px black;
+}
+
+.tox-statusbar__branding {
+    /*fait disparaitre le branding tinymce*/
     display: none;
 }
 
+.articles p {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2rem;
+}
+
+.articles form input {
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.3rem;
+}
+
+.articles select,
+.articles select option {
+    padding: 1rem;
+    font-size: 1.3rem;
+}
+
+
 /* AJOUTER UN JEU */
 
-.addGame{
+.addGame {
     width: 80%;
 }
-.addGame p input{
+
+.addGame p input {
     width: 80%;
     margin-bottom: 1rem;
 }
-.addGame select{
+
+.addGame select {
     padding: 1rem;
     width: 40%;
     font-size: 1.3rem;

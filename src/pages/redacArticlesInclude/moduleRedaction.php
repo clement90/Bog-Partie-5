@@ -1,13 +1,89 @@
+<?php
+    require "../../src/pages/redacArticlesInclude/traitementTamponLiens.php";
+    // encapsuler la liste des jeux dans une variable
+    $listeJeu = getListGame();
+    // encapsule données liste du hardware
+    $listeHard = getHard();
+    // Liste des catégories d'articles
+    $listeGenre = getGenre();
+    // type d'articles
+    $listeTypeArticle = getCategorie();
+?>
+
 <!-- Formulaire de création d'article -->
+
 <section class="articles">
-    <form method="post" action="" enctype="multipart/form-data">
+    <form action="" method="post" enctype="multipart/form-data">
         <p>Titre de votre article</p>
-        <input type="text" name="titre" >
-        <p>Image de référence</p>
+        <input type="text" name="titre">
+        <p>Image de référence : </p>
         <input type="file" name="fichier">
-        <p>Composez votre article</p>
-        <textarea name="contenu" id="contenu"> </textarea>
-        <input type="submit" value="Envoyez votre article">
+        <table>
+            <tr>
+                <td>Jeu concerné</td>
+                <td>Console</td>
+                <td>Genre</td>
+                <td>Type d'article</td>
+                <td>A la une?</td>
+            </tr>
+                <td>
+                    <select name="jeu">
+                        <?php
+                            /* Boucle for pour créer mes options dynamiquement */
+                            for($i = 0; $i < count($listeJeu); $i++){
+                                ?>
+                                    <option value="<?= $listeJeu[$i]["nom"]?>"><?= $listeJeu[$i]["nom"]?></option>
+                                <?php
+                            }
+                        ?>
+                    </select>
+                </td>
+                <td>
+                    <select name="console">
+                        <?php
+                            /* Boucle for pour créer mes options dynamiquement */
+                            for($i = 0; $i < count($listeHard); $i++){
+                                ?>
+                                    <option value="<?= $listeHard[$i][1]?>"><?= $listeHard[$i][1]?></option>
+                                <?php
+                            }
+                        ?>
+                    </select>
+                </td>
+                <td>
+                    <select name="genre">
+                        <?php
+                            /* Boucle for pour créer mes options dynamiquement */
+                            for($i = 0; $i < count($listeGenre); $i++){
+                                ?>
+                                    <option value="<?= $listeGenre[$i][1]?>"><?= $listeGenre[$i][1]?></option>
+                                <?php
+                            }
+                        ?>
+                    </select>
+                </td>
+                <td>
+                    <select name="typeArticle">
+                        <?php
+                            /* Boucle for pour créer mes options dynamiquement */
+                            for($i = 0; $i < count($listeTypeArticle); $i++){
+                                ?>
+                                    <option value="<?= $listeTypeArticle[$i]?>"><?= $listeTypeArticle[$i]?></option>
+                                <?php
+                            }
+                        ?>
+                    </select>
+                </td>
+                <td>
+                    <input type="checkbox" name="star">
+                </td>
+            <tr>
+
+            </tr>
+        </table>
+        <p>Composer votre article</p>
+        <textarea name="contenu" id="contenu"></textarea>
+        <input class="btnTampon" type="submit" value="Envoyer votre article">
     </form>
 </section>
 

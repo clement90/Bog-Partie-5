@@ -18,7 +18,7 @@
     if(isset($tinymce) && $tinymce == true):
         ?>
     <!-- faire le lien avec tinymce -->
-    <script src="https://cdn.tiny.cloud/1/3cbmy463x00x3y5ipepe1ci2yn586bgoizf588705i8zcma1/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>    
+    <script src="https://cdn.tiny.cloud/1/ne4zuupt8x727e1uhoyo3el0wba6v9qsexcl2qu28ibz1dqx/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>   
     <?php endif; ?>
 
 </head>
