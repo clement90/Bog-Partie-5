@@ -103,4 +103,29 @@
         $requete->closeCursor();
     }
 
+    //Chercher une categorie d'article par genre pour récuperer son id
+    function getTypeArticleByName($categorieId){
+        $bdd =dbAccess();
+        $requete = $bdd->prepare("SELECT * FROM categorie
+                                    WHERE nomCategorie = ?");
+        $requete->execute(array($categorieId)) or die(print_r($requete->errorInfo(), TRUE));
+        while($données = $requete->fetch()){
+            $listCategorie = [$données["categorieId"], $données["nomCategorie"]];
+        }
+        $requete->closeCursor();
+        return $listCategorie;
+    }
+
+    //Cherche une catégorie de jeu par son nom
+    function getGameCategoryByName($valeur){
+        $bdd = dbAccess();
+        $requete = $bdd->prepare("SELECT * FROM gamecategory
+                                    WHERE genre = ?");
+        $requete->execute(array($valeur)) or die(print_r($requete->errorInfo(),TRUE));
+        while($données = $requete->fetch()){
+            $gameCategoryId = $données;
+        }
+        $requete->closeCursor();
+        return $gameCategoryId;
+    }
     ?>

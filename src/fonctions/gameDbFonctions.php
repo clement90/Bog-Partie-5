@@ -72,3 +72,32 @@ function deleteGame($jeux){
     $requete->execute(array($jeux))or die(print_r($requete->errorInfo(), TRUE));;
     $requete->closeCursor();
 }
+
+//REchercher un jeu par son nom
+function getGameByName($valeur){
+    $bdd = dbAccess();
+    $requete = $bdd->prepare("SELECT *  FROM jeux
+                                WHERE nom = ?");
+    $requete->execute(array($valeur)) or die(print_r($requete->errorInfo(),TRUE));
+
+    while($données = $requete->fetch()){
+        $listeJeux[] = $données;
+    }
+    $requete->closeCursor();
+    return $listeJeux;
+}
+
+//Fonction trouver une console par son nom
+function getHardByNAme($valeur){
+    $bdd = dbAccess();
+    $requete = $bdd->prepare("SELECT * FROM hardware
+                                WHERE console = ?");
+    $requete->execute(array($valeur)) or die(print_r($requete->errorInfo(), TRUE));
+    while($données = $requete->fetch()){
+        $idHardware[] = $données;
+    }
+    $requete->closeCursor();
+    return $idHardware;
+}
+
+?>

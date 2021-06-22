@@ -1,10 +1,24 @@
 <?php
     $titre = "Votre compte";
     require "../../src/common/template.php";
+    require "../../src/fonctions/dbAccess.php";
     $mdpNok = false;
     require "../../src/fonctions/dbFonction.php";
     require '../../src/fonctions/mesFonctions.php';
-
+    // traiter le formulaire d'envoi de photo
+        if(isset($_FILES["fichier"])):
+            // j'appelle ma fonction envoyer image dans une variable
+            $photo = sendImg($_FILES["fichier"], "avatar");
+            // Je lance ma fonction pour mettre à jour la base de donnée
+            updateImg($photo);
+            // image envoyée et mise à jour de la bd ok, je peux effacer l'ancien avatar
+            unlink($_SESSION["user"]["photo"]);
+            // Je mets à jour ma variable session photo
+            $_SESSION["user"]["photo"] = $photo;
+            // je recharge la page
+            header("location ../../src/pages/account.php?maj=true&message=Félicitation, votre avatar est mis à jour!");
+            header("location ../../src/pages/account.php?maj=true&message=Félicitation, votre avatar est mis à jour!");
+        endif;
 ?>
 
 <section id="account">
@@ -60,19 +74,5 @@
     </div>
 </section>
 <?php
-    // traiter le formulaire d'envoi de photo
-    if(isset($_FILES["fichier"])):
-        // j'appelle ma fonction envoyer image dans une variable
-        $photo = sendImg($_FILES["fichier"], "avatar");
-        // Je lance ma fonction pour mettre à jour la base de donnée
-        updateImg($photo);
-        // image envoyée et mise à jour de la bd ok, je peux effacer l'ancien avatar
-        unlink($_SESSION["user"]["photo"]);
-        // Je mets à jour ma variable session photo
-        $_SESSION["user"]["photo"] = $photo;
-        // je recharge la page
-        header("location ../../src/pages/account.php?maj=true&message=Félicitation, votre avatar est mis à jour!");
-        header("location ../../src/pages/account.php?maj=true&message=Félicitation, votre avatar est mis à jour!");
-    endif;
     require "../../src/common/footer.php";
 ?>
