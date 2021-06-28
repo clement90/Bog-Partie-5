@@ -38,6 +38,16 @@
                     require "../fonctions/gameDbFonctions.php";
                     require "../../src/pages/adminInclude/listeJeux/listeJeux.php";
                 endif;
+                //Quand l'admin selectionne les users
+                if(isset($_GET["choix"]) && $_GET["choix"] == "listeUser"){
+                    require "../fonctions/usersDbFonctions.php";
+                    require "../../src/pages/adminInclude/listeUsers/listeUsers.php";
+                }
+                //Quand l'admin selectionne les commentaires
+                if(isset($_GET["choix"]) && $_GET["choix"] == "listeCommentaire"){
+                    require "../fonctions/commentairesDbfonctions.php";
+                    require "../../src/pages/adminInclude/listeCommentaires/listeCommentaires.php";
+                }
             ?>
 
         </div>

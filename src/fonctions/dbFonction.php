@@ -1,13 +1,12 @@
 <?php
 
 // Enregister un nouvel user dans ma base de donnée
-    function createUser($avatar, $login, $nom, $prenom, $email, $mdp, $roleId, $ban){
-    
+    function createUser($avatar, $login, $nom, $prenom, $email, $mdp, $roleId, $ban, $codeValidation){
         $bdd = dbAccess();
-        $requete = $bdd->prepare("INSERT INTO users(avatar, login, nom, prenom, email, mdp, roleId, ban)
-                                VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
+        $requete = $bdd->prepare("INSERT INTO users(avatar, login, nom, prenom, email, mdp, roleId, ban, codeValidation)
+                                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-        $requete->execute(array($avatar, $login, $nom, $prenom, $email, $mdp, $roleId, $ban)) or die(print_r($requete->errorInfo(), TRUE));
+        $requete->execute(array($avatar, $login, $nom, $prenom, $email, $mdp, $roleId, $ban, $codeValidation)) or die(print_r($requete->errorInfo(), TRUE));
         $requete->closeCursor();
     }
 
@@ -28,7 +27,7 @@
                 
                 //J'active ma session user avec les infos dont je pourrai avoir besoin
                 // tant que mon utilisateur est connecté 
-                if($result["mdp"] == $sel){
+                if($result["mdp"] == $sel && $result["actif"] ==TRUE){
                     $_SESSION["connect"] = true;
                     $_SESSION["user"] = [
                         "id" => $result["userId"],
@@ -48,9 +47,13 @@
                     exit();
                 }
                 else{
-                    
+                    if($result["actif"] == FALSE)
+                    {
+                        header("location: ../../src/pages/login.php?erreur=Veuillez activer votre compte via le mail!");
+                        exit();
+                    }else{
                     header("location: ../../src/pages/login.php?erreur=Mot de passe incorrect");
-                    exit();
+                    exit();}
                 }
             }
         }

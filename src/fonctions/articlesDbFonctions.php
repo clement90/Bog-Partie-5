@@ -47,4 +47,18 @@
         $requete->execute(array($articleId)) or die(print_r($requete->errorInfo(), TRUE));
         $requete->closeCursor();
     }
+
+    function getTOp(){
+        $bdd = dbAccess();
+        $requete = $bdd->query("SELECT a.articleId, a.titre, j.cover
+                                FROM articles a
+                                INNER JOIN jeux j ON j.gameId = a.gameId
+                                INNER JOIN stars s ON s.articleId = a.articleId
+                                WHERE s.articleId = a.articleId
+                                ORDER BY a.date DESC LIMIT 12 ");
+        while($donnees = $requete->fetch()){
+            $listArticlesOnTop[] = $donnees;
+        }
+        return $listArticlesOnTop;
+    }
 ?>

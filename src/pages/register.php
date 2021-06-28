@@ -20,7 +20,7 @@
         !empty($_POST["prenom"]) && !empty($_POST["login"]) 
         && !empty($_POST["email"]) && !empty($_POST["mdp"]) && !empty($_POST["mdp2"])):
         // Si le user n'entre pas de photo, je crée une variable qui recoit l'image par défaut de l'avatar
-         $photo = "../../src/img/site/avatar.png";
+         $photo = "../../src/img/site/defaut_avatar.png";
 
         //Filter sanitize sur mes entrées
         // Je constuit un tableau avec les données sensibles envoyées
@@ -64,7 +64,7 @@
         }
 
         // Verifier si le user ou le mail n'est pas présent dans la db
-        $bdd = new PDO("mysql:host=localhost;dbname=game_from_belgium;charset=utf8", "root", "");
+        $bdd = new PDO("mysql:host=localhost;dbname=blog-gaming;charset=utf8", "root", "");
 
         // Verifier le login (CHECKLOGIN)
         $requete = $bdd->prepare("SELECT COUNT(*) AS x
@@ -96,13 +96,21 @@
         if(isset($_FILES["fichier"]) && $_FILES["fichier"]["error"] == 0){
             $photo = sendImg($_FILES["fichier"], "avatar");
         }
-        echo $photo;
+        $codeValidation = grainDeSel(rand(5,20));
+        $dest = $email;
+        $sujet = "Email de confirmation d'inscription";
+        $corp = "http://localhost/src/pages/validation.php?validation=" . $codeValidation;
+        $headers = "From: drynnaea@gmail.com";
+        mail($dest, $sujet, $corp, $headers);
         //Mes données sont saines, je peux les envoyer dans la db
-        createUser($photo, $login, $nom, $prenom, $email, $mdpToSend, $role, $roleId);
+        createUser($photo, $login, $nom, $prenom, $email, $mdpToSend, $role, $roleId, $codeValidation);
 ?>
         <!-- Si tout c'est bien passé, informer et proposer de se connecter -->
-        <h2 class="registerOk">Votre compte est maintenant créé, vous pouvez vous <a href="../../src/pages/login.php"> CONNECTER</a></h2>
-<?php
+        <h2 class="registerOk">Votre compte est maintenant créé, veuillez valider votre compte avant de vous CONNECTER</a></h2>
+        <?php
+
+        ?>
+<?php 
     else:
 ?>
 <section class="register">
