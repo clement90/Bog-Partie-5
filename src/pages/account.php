@@ -67,7 +67,7 @@
                 if($_SESSION["user"]["role"] == "auteur" || $_SESSION["user"]["role"] == "admin"): ?>
             <h2>Vos Articles</h2>
             <?php
-            if(isset($listeUserComment)){?>
+            if(isset($listeUserArticle)){?>
             <table class="mlr-a mt-1 p-1">
                 <thead>
                     <tr>
@@ -78,7 +78,7 @@
                 <tbody>
 
             <?php    
-                for($i=0; $i<count($listeUserComment); $i++){
+                for($i=0; $i<count($listeUserArticle); $i++){
                     ?>
                     
                         <tr>
