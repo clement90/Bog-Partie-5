@@ -47,7 +47,7 @@
         $requete->execute(array($articleId)) or die(print_r($requete->errorInfo(), TRUE));
         $requete->closeCursor();
     }
-
+    //Obtenir tout les 12 derniers articles stars
     function getTOp(){
         $bdd = dbAccess();
         $requete = $bdd->query("SELECT a.articleId, a.titre, j.cover
@@ -60,5 +60,30 @@
             $listArticlesOnTop[] = $donnees;
         }
         return $listArticlesOnTop;
+    }
+
+    //Obtenir tout les articles
+    function getListeArticles(){
+        $bdd = dbAccess();
+        $requete = $bdd->query("SELECT a.articleId, a.titre, a.date, c.nomCategorie, u.login, j.nom, h.console, a.star
+                                FROM articles a
+                                INNER JOIN categorie c ON c.categorieId = a.categorieId
+                                INNER JOIN users u ON u.userId = a.auteurId
+                                INNER JOIN jeux j ON j.gameId = a.gameId
+                                INNER JOIN hardware h ON h.hardId = a.hardId
+                                ORDER BY a.date DESC") or die(print_r($requete->errorInfo(), TRUE));
+        while($donnees = $requete->fetch()){
+            $listeArticleAdmin[] = $donnees;
+        }
+        return $listeArticleAdmin;
+    }
+
+    //Effacer un article
+    function deleteArticle($articleId){
+        $bdd = dbAccess();
+        $requete = $bdd->prepare("DELETE FROM articles
+                                    WHERE articleId = ?");
+        $requete->execute(array($articleId)) or die(print_r($requete->errorInfo(), TRUE));
+        $requete->closeCursor();
     }
 ?>

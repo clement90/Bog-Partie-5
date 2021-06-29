@@ -5,6 +5,13 @@
         header("location: ./index.php");
         exit();
     endif;
+    //Récupération de la liste des consoles
+    $bdd = new PDO("mysql:host=localhost;dbname=blog-gaming;charset=utf8", "root", "");
+    $requete = $bdd->query("SELECT * FROM hardware ORDER BY console") or die(print_r($requete->errorInfo(), TRUE));
+    while($donnees = $requete->fetch()){
+        $listeConsole[] = $donnees;
+    }
+    $requete->closeCursor();
 ?>
 <header class="bg">
     <div>
@@ -12,12 +19,14 @@
     </div>
     <nav>
         <ul>
-            <li><a href="../../src/pages/index.php">PS5</a></li>
-            <li><a href="">PS4</a></li>
-            <li><a href="">XBOX ONE</a></li>
-            <li><a href="">SWITCH</a></li>
-            <li><a href="">PC</a></li>
-            <li><a href="">VR</a></li>
+        <?php
+        for($i=0; $i<count($listeConsole); $i++){
+            ?>
+            <li><a href="../../src/pages/console.php?choix=<?= $listeConsole[$i]["console"]?>"><?= $listeConsole[$i]["console"]?></a></li>
+            <?php
+        }
+        ?>
+            
         </ul>
     </nav>
     <div>

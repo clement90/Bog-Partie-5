@@ -23,6 +23,6 @@
 
 </head>
 <body class="bgWhite"> 
-    <?php   require ("nav.php") ?>
+    <?php require ("nav.php");?>
 </body>
 </html>

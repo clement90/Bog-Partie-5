@@ -6,6 +6,7 @@ if(isset($_SESSION["user"]["role"]) && $_SESSION["user"]["role"] == "admin"){
         $userId = intval($_GET["value"]);
         deleteUser($userId);
     }
+    //Bannir un utilisateur
     if(isset($_GET["ban"]) && $_GET["ban"] == true){
         $userId = intval($_GET["value"]);
         banUser($userId);

@@ -1,4 +1,12 @@
 <?php
+//Vérifier que mon utilisatuer est bien un admin
+if(isset($_SESSION["user"]["role"]) && $_SESSION["user"]["role"] == "admin"){
+    //Effacer un commentaire
+    if(isset($_GET["delete"]) && $_GET["delete"] == true){
+        $commentaireId = intval($_GET["value"]);
+        deleteCommentaire($commentaireId);
+    }
+}
 $listeCommentaires = getAllComment();
 ?>
 

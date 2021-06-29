@@ -43,4 +43,11 @@ function getAllComment(){
     $requete->closeCursor();
     return $listeCommentaires;
 }
+
+function deleteCommentaire($id){
+    $bdd = dbAccess();
+    $requete = $bdd->prepare("DELETE FROM commentaires WHERE commentaireId = ?");
+    $requete->execute(array($id)) or die(print_r($requete->errorInfo(), TRUE));
+    $requete->closeCursor();
+}
 ?>

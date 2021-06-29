@@ -72,6 +72,37 @@
         $requete->closeCursor();
 }
 
+    // Fonction pour récuperer les commentaire de l'user
+    function getUserComment($userId){
+        $bdd = dbAccess();
+        $requete = $bdd->prepare("SELECT a.titre, c.contenu, c.dateCommentaire, a.articleId
+                                    from commentaires c
+                                    INNER JOIN articles a ON a.articleId = c.articleId
+                                    WHERE c.auteurId = ?");
+        $requete->execute(array($userId)) or die(print_r($requete->errorInfo(), TRUE));
+        while($données = $requete->fetch()){
+            $listComment[] = $données;
+        }
+        if(isset($listComment)){
+            return $listComment;
+        }
+    }
+
+    // Fonction pour récuperer les article de l'user
+    function getUserArticle($userId){
+        $bdd = dbAccess();
+        $requete = $bdd->prepare("SELECT a.titre, a.date, a.articleId
+                                    from articles a
+                                    WHERE a.auteurId = ?");
+        $requete->execute(array($userId)) or die(print_r($requete->errorInfo(), TRUE));
+        while($données = $requete->fetch()){
+            $listArticle[] = $données;
+        }
+        if(isset($listArticle)){
+            return $listArticle;
+        }
+    }
+
     // // Function pour récupérer les catégorie de console
     // function getHardCategorie(){
     //     $bdd = new PDO("mysql:host=localhost;dbname=game_from_belgium;charset=utf8", "root", "");
@@ -175,7 +206,7 @@
     //     $requete->closeCursor();
     // }
 
-
+?>
 
     
     

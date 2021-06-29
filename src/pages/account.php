@@ -19,6 +19,8 @@
             header("location ../../src/pages/account.php?maj=true&message=Félicitation, votre avatar est mis à jour!");
             header("location ../../src/pages/account.php?maj=true&message=Félicitation, votre avatar est mis à jour!");
         endif;
+    $listeUserComment = getUserComment($_SESSION["user"]["id"]);
+    $listeUserArticle = getUserArticle($_SESSION["user"]["id"]);
 ?>
 
 <section id="account">
@@ -64,12 +66,69 @@
             <?php
                 if($_SESSION["user"]["role"] == "auteur" || $_SESSION["user"]["role"] == "admin"): ?>
             <h2>Vos Articles</h2>
+            <?php
+            if(isset($listeUserComment)){?>
+            <table class="mlr-a mt-1 p-1">
+                <thead>
+                    <tr>
+                        <td>Article</td>
+                        <td>Date</td>
+                    </tr>
+                </thead>
+                <tbody>
+
+            <?php    
+                for($i=0; $i<count($listeUserComment); $i++){
+                    ?>
+                    
+                        <tr>
+                            <td><a href="../../src/common/pageArticle.php?id=<?= $listeUserArticle[$i]["articleId"]?>"><?= substr($listeUserArticle[$i]["titre"],0,50) . "..."?></a></td>
+                            <td><?= $listeUserArticle[$i]["date"]?></td>
+                        </tr>
+                    
+                    <?php
+                }?>
+                </tbody>
+            </table>
+                <?php
+            }else{
+            ?>
             <p>pas d'articles</p>
-            <!-- LISTE DES ARTICLES -->
+        <?php }     ?>
+            <!-- LISTE DES COMMENTAIRE -->
             <?php endif; ?>
             <h2>Vos Commentaires</h2>
-            <p>pas de commentaires</p>
-            <!-- LISTE DES COMMENTAIRES -->
+            <?php
+            if(isset($listeUserComment)){?>
+            <table class="mlr-a mt-1 p-1">
+                <thead>
+                    <tr>
+                        <td>Article</td>
+                        <td>Commentaire</td>
+                        <td>Date</td>
+                    </tr>
+                </thead>
+                <tbody>
+
+            <?php    
+                for($i=0; $i<count($listeUserComment); $i++){
+                    ?>
+                    
+                        <tr>
+                            <td><a href="../../src/common/pageArticle.php?id=<?=$listeUserComment[$i]["articleId"]?>"><?= substr($listeUserComment[$i]["titre"],0,30) . "..."?></a></td>
+                            <td><?= $listeUserComment[$i]["contenu"]?></td>
+                            <td><?= $listeUserComment[$i]["dateCommentaire"]?></td>
+                        </tr>
+                    
+                    <?php
+                }?>
+                </tbody>
+            </table>
+                <?php
+            }else{
+            ?>
+            <p>pas de commentaire</p>
+            <?php } ?>
         </div>
     </div>
 </section>

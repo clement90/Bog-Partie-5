@@ -20,7 +20,7 @@
             <a href="../../src/pages/admin.php?choix=listeCategorie">Gérer les catégories</a>
             <a href="../../src/pages/admin.php?choix=listeJeux">Gérer les Jeux</a>
             <a href="../../src/pages/admin.php?choix=listeUser">Gérer les users</a>
-            <a href="../../src/pages/admin.php?choix=listeCommentaire">Gérer les commentaires</a>
+            <a href="../../src/pages/admin.php?choix=listeCommentaires">Gérer les commentaires</a>
             <a href="../../src/pages/admin.php?choix=listeArticle">Gérer les articles</a>  
         </div>
         <div class="<?=$choixMenu?>">
@@ -44,9 +44,13 @@
                     require "../../src/pages/adminInclude/listeUsers/listeUsers.php";
                 }
                 //Quand l'admin selectionne les commentaires
-                if(isset($_GET["choix"]) && $_GET["choix"] == "listeCommentaire"){
+                if(isset($_GET["choix"]) && $_GET["choix"] == "listeCommentaires"){
                     require "../fonctions/commentairesDbfonctions.php";
                     require "../../src/pages/adminInclude/listeCommentaires/listeCommentaires.php";
+                }
+                if(isset($_GET["choix"]) && $_GET["choix"] == "listeArticle"){
+                    require "../fonctions/articlesDbfonctions.php";
+                    require "../../src/pages/adminInclude/articleAdmin/articleAdmin.php";
                 }
             ?>
 
